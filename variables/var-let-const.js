@@ -4,7 +4,7 @@
  permite redeclaração e reatribuição. Sofre hoisting, 
 podendo ser usada antes de ser declarada (com valor undefined).*/
 var nome = "William";
-var nome = "José"; 
+var nome = "José";
 
 console.log(nome);
 
