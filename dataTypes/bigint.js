@@ -1,5 +1,5 @@
 let numeroGrande = 8915502332156131520120n 
-// o n no final representa um bigint ou seija um numero muito grande
+// o n no final representa um bigint ou seja um numero muito grande
 //maiores que do que o number consegue suportar
 
 console.log(numeroGrande)
