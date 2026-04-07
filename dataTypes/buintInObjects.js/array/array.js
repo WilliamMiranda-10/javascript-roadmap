@@ -8,8 +8,8 @@ const data = [
 console.log(data);
 // Reverse
 
-// const reverseData = data.reverse();
-// console.log(reverseData);
+const reverseData = data.reverse();
+console.log(reverseData);
 
 //find
 const highSalary = 5000;

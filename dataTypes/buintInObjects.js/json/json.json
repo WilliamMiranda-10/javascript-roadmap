@@ -1,0 +1,16 @@
+[
+  {
+    "name": "william",
+    "userName": "Miranda",
+    "age": 29,
+    "city": "jaru",
+    "hobbies": ["Jogar bola", "Assistir Filme", "Viajar"]
+  },
+  {
+    "name": "Bruna",
+    "userName": "Alves",
+    "age": 29,
+    "city": "jaru",
+    "hobbies": ["Jogar bola", "Assistir Filme", "Ir a igreja"]
+  }
+]
