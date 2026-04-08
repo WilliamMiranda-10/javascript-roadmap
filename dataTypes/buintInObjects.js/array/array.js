@@ -5,51 +5,47 @@ const data = [
   { name: "Pedro", age: 50, sallary: 7200, driverLicense: true },
   { name: "Érica", age: 16, sallary: 0, driverLicense: false },
 ];
-console.log(data);
+
 // Reverse
 
-const reverseData = data.reverse();
+const reverseData = data.reverse(); //inverte a lista de array
 console.log(reverseData);
 
 //find
 const highSalary = 5000;
 
-const highestSallary = data.find((user) => user.sallary > highSalary); //retorna o usuario que tem o salario maior 5000, neste caso pedro
+const highestSallary = data.find((user) => user.sallary > highSalary); //retorna o usuario que tem o salario maior que 5000, neste caso pedro
 console.log(highestSallary); // {name: 'Pedro', age: 50, sallary: 7200, driverLicense: true}
 
 //findIndex
 
 const lowerSallary = data.findIndex(
-  (user) => user.sallary > 0 && user.sallary < 2000 //pegamos o indice do usuario que tem o salario entre 1 e 1999
+  (user) => user.sallary > 0 && user.sallary < 2000 //pegamos o indice do usuario que tem o salario entre 1 e 1999, neste caso o João
 );
 //com o indice dele demos um aumento de 1000 reais no salario
+//antes { name: "João", age: 18, sallary: 1500, driverLicense: false },
+//depois {name: 'João', age: 18, sallary: 2500, driverLicense: false }
 data[lowerSallary].sallary += 1000;
 console.log(data);
 
-// includes
-
-const numbers = [15, 3, 4, 85, 6, 99, 5, 2];
-
-const hasFour = numbers.includes(4); //verifica se tem numero 4 na lista de numeros (numbers)
-console.log(hasFour); //true
-
 // map
 
-data.map((user) => (user.newlsLetter = false)); //adicionamos uma propriedade
-console.log("map:", data);
+data.map((user) => (user.name === "Pedro" ? (user.newlsLetter = true) : user)); //adicionamos uma propriedade somente ao pedro
+
+console.log(data); //
 
 // filter
 
 const drivers = data.filter((user) => user.driverLicense); // filtra e retorna todos os usuarios que tem driverLicense
-console.log("filter:", drivers);
+console.log(drivers);
 
 // reduce
 
 const sallarySum = data.reduce(
-  (totalSallary, user) => (totalSallary += user.sallary),
+  (totalSallary, user) => (totalSallary += user.sallary), // retorna a soma de todos os salarios
   0
 );
-console.log("reduce:", sallarySum);
+console.log(sallarySum);
 
 // forEach
 const showUsersNames = (users) => {
@@ -63,7 +59,7 @@ showUsersNames(data);
 
 // some
 
-const ofAge = data.some((user) => user.age >= 20); //verifica se tem pelo menos um usuário com idade maior ou igua a 20, retorna um boolean
+const ofAge = data.some((user) => user.age >= 20); //verifica se tem pelo menos um usuário com idade maior ou igual a 20, retorna um boolean
 console.log("some:", ofAge); //true
 
 // every
@@ -84,7 +80,7 @@ const newUser = {
   newlsLetter: true,
 };
 
-data.push(newUser); //com o push adiciona um novo usuario ao array de usuários
+data.push(newUser); //push adiciona um novo usuario ao array de usuários
 console.log(data);
 
 // pop
@@ -121,3 +117,20 @@ console.log(newTimes);
 
 const separator = times.join("-"); //transforma o array em string e ultiliza um separador neste caso um -> (-)
 console.log(separator);
+
+// shift
+const numbers = [6, 3, 2, 1, 5, 22, 15, 88];
+
+const firstElement = numbers.shift(); //pega o primeiro elemento no array
+console.log(firstElement); // 6
+console.log(numbers); //[3, 2, 1, 5, 22, 15, 88] o 6 foi retirado
+
+// unshift
+const listNumbers = [45, 2, 0, 15, 3, 56];
+console.log(listNumbers.unshift(10)); //8 , adiciona o valor (10) no inicio do array e retorna quantidade elementos
+console.log(listNumbers); //[10, 45, 2, 0, 15, 3, 56]
+
+// includes
+
+const hasFour = listNumbers.includes(56); //verifica se tem numero 56 na lista de numeros (listNumbers)
+console.log(hasFour); //true
