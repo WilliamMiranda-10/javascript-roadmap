@@ -11,7 +11,7 @@ function raizQuadrada(num) {
 
 console.log(raizQuadrada(12)); //3.4641016151377544 Math.sqrt retorna a raiz quadrada
 
-console.log(Math.random()); // 0.32815363570967304 retorna um numero alertório entre 0,1
+console.log(Math.random()); // 0.32815363570967304 retorna um numero alertório entre 0 e 1
 
 const num1 = 12;
 const num2 = 1;

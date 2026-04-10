@@ -72,3 +72,5 @@ Object.freeze(usuario); // com o freeze obj fica congelado nao pode alterar
 usuario.nome = "José";
 console.log("Resultado", usuario);
 console.log(Object.isFrozen(usuario)); // verifica se o objeto esta congelado no meu caso true
+
+
