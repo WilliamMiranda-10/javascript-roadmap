@@ -1,5 +1,5 @@
 //Type Casting (ou conversão de tipo)
-//é quando você transforma um valor de um tipo para outro em linguagens de programação, como JavaScript.
+
 //Ex:
 
 //implicit --> a linguagem faz a conversão sozinha
