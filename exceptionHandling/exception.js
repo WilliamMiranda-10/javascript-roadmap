@@ -11,7 +11,6 @@ try {
 
 // 2: ex error object
 
-
 try {
   let name = undefined;
   if (!name) {
@@ -100,6 +99,7 @@ function createUsers(user) {
 
   return user;
 }
+
 for (const user of usersList) {
   try {
     const newUser = createUsers(user);
