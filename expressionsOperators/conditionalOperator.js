@@ -1,68 +1,69 @@
-// //  condicao ? valorSeTrue : valorSeFalse
+//  condicao ? valorSeTrue : valorSeFalse
 
-// // Ex: 01
+// Ex: 01
 
-// const age = 8;
+const age = 8;
 
-// const result = age >= 18 ? "Maior de idade" : "Menor de idade";
+const result = age >= 18 ? "Maior de idade" : "Menor de idade";
 
-// console.log(result);
+console.log(result);
 
-// // Ex: 02
+// Ex: 02
 
-// const number = 15;
+const number = 15;
 
-// const typer = number % 2 === 0 ? "Par" : "Impar";
+const typer = number % 2 === 0 ? "Par" : "Impar";
 
-// console.log(typer);
+console.log(typer);
 
-// // Ex: 03 classificar usuário
+// Ex: 03 classificar usuário
 
-// const user = {
-//   name: "William",
-//   age: 10,
-//   email: "teste@gmail.com",
-// };
+const user = {
+  name: "William",
+  age: 10,
+  email: "teste@gmail.com",
+};
 
-// const statusLogin = user.age >= 18 ? "Acesso liberado" : "Acesso negado";
+const statusLogin = user.age >= 18 ? "Acesso liberado" : "Acesso negado";
 
-// console.log(statusLogin);
+console.log(statusLogin); // Acesso negado => idade menor que 18
 
-// //Ex: 04 Desconto
+//Ex: 04 Desconto
 
-// const purchaseValue = 500;
+const purchaseValue = 500;
 
-// const finalValue =
-//   purchaseValue >= 3000
-//     ? purchaseValue * 0.85
-//     : purchaseValue >= 2000
-//     ? purchaseValue * 0.9
-//     : purchaseValue >= 1000
-//     ? purchaseValue * 0.95
-//     : purchaseValue;
+const finalValue =
+  purchaseValue >= 3000
+    ? purchaseValue * 0.85
+    : purchaseValue >= 2000
+    ? purchaseValue * 0.9
+    : purchaseValue >= 1000
+    ? purchaseValue * 0.95
+    : purchaseValue;
 
-// console.log(`Valor total R$ ${purchaseValue.toFixed(2)}`);
+console.log(`Valor total R$ ${purchaseValue.toFixed(2)}`);
 
-// console.log(
-//   purchaseValue < 1000
-//     ? "Não tem desconto"
-//     : `Valor com desconto: R$ ${finalValue.toFixed(2)}`
-// );
+console.log( // Não tem desconto => valor da compra menor que 1000
+  purchaseValue < 1000
+    ? "Não tem desconto"
+    : `Valor com desconto: R$ ${finalValue.toFixed(2)}` 
+); 
 
-// // Ex : 04 validar usuário
 
-// const user1 = {
-//   name: "William",
-//   email: "teste@gmail.com",
-//   age: 10,
-// };
+// Ex : 04 validar usuário
 
-// const isValid =
-//   user1.name && user1.email && user1.age >= 18
-//     ? "Usuário valido"
-//     : "Usuário inválido";
+const user1 = {
+  name: "William",
+  email: "teste@gmail.com",
+  age: 10,
+};
 
-// console.log(isValid); //Usuário inválido
+const isValid =
+  user1.name && user1.email.includes("@") && user1.age >= 18
+    ? "Usuário valido"
+    : "Usuário inválido";
+
+console.log(isValid); //Usuário inválido => idade menor que 18
 
 // // Ex: 05 sistema login com tentativas
 
@@ -96,10 +97,12 @@ for (let i = 0; i < attempts.length; i++) {
   }
 }
 
-const result = success
+const resultLogin = success
   ? "Login sucesso"
   : blocked
   ? "Login bloqueado"
   : "Tente novamente";
 
-console.log(result);
+console.log(resultLogin); // Login bloqueado => mais de 3 tentativas
+
+
