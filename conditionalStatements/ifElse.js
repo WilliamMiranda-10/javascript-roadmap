@@ -59,3 +59,4 @@ console.log(
   `Valor total: R$ ${purchaseValue.toFixed(2)}
 Valor Total com desconto: R$ ${endValue.toFixed(2)}`
 );
+
