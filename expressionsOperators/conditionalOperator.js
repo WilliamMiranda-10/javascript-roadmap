@@ -43,12 +43,12 @@ const finalValue =
 
 console.log(`Valor total R$ ${purchaseValue.toFixed(2)}`);
 
-console.log( // Não tem desconto => valor da compra menor que 1000
+console.log(
+  // Não tem desconto => valor da compra menor que 1000
   purchaseValue < 1000
     ? "Não tem desconto"
-    : `Valor com desconto: R$ ${finalValue.toFixed(2)}` 
-); 
-
+    : `Valor com desconto: R$ ${finalValue.toFixed(2)}`
+);
 
 // Ex : 04 validar usuário
 
@@ -104,5 +104,3 @@ const resultLogin = success
   : "Tente novamente";
 
 console.log(resultLogin); // Login bloqueado => mais de 3 tentativas
-
-
