@@ -17,7 +17,7 @@ function hello(nome) {
   console.log("Olá", nome);
 }
 
-hello(); //Olá undefined --> como não passei nenhum valor para o paramentro nome o resultado deu undefined para nome
+hello(); //Olá undefined --> como não passei nenhum valor para o parametro nome o resultado deu undefined para nome
 hello("William"); // Olá William
 
 function createUser(name, age = 30) {
