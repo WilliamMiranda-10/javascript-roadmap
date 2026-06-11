@@ -22,8 +22,8 @@ console.log(sum(56, 22));
 
 
 // Ex: 03
-const colores = ["Azul", "Amarelo", "Verde", "Marrom"];
+const colors = ["Azul", "Amarelo", "Verde", "Marrom"];
 
-const getColors = (colors) => colors.filter((color)=> color)
+const getColors = (colors) => colors.map((color) => color.length)
 
-console.log(getColors(colores))
+console.log(getColors(colors))
