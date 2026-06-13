@@ -22,12 +22,9 @@ console.log(sum(1, 6, 5, 3, 48, 65, 32, 336, 64)); //560
 // };
 // test(1, 6, 3, 5);
 
-
 // rest parameters
 const testSumNumbers = (...numbers) => {
   return numbers.reduce((total, num) => total + num, 0);
 };
 
 console.log(testSumNumbers(12, 63, 148, 44, 887, 66)); // 1220
-
-
