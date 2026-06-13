@@ -65,6 +65,7 @@ function createUser() {
   }
 }
 
+// segunda entrar
 function isValid(email, password) {
   if (!email.includes("@")) {
     return false;
@@ -78,4 +79,34 @@ function isValid(email, password) {
   return true;
 }
 
-createUser();
+createUser(); // primeira entrar na pilha, como se fosse de livros
+
+// recursion
+// Quando a mesma função chama ela mesma!
+
+// Exemplo: 01
+function factorial(n) {
+  if (n === 1) {
+    return 1;
+  }
+  return n * factorial(n - 1); // 5 4 3 2 1
+}
+
+console.log(factorial(55));
+
+// Exemplo 02
+
+function test(x) {
+  console.log(x);
+
+  if (x > 1) {
+    test(x - 1);
+  }
+
+  console.log('Fim', x)
+}
+
+test(3)
+
+// Exercicio 01 
+
