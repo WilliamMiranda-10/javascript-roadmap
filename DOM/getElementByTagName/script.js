@@ -57,3 +57,4 @@ for (let i = 0; i < btn.length; i++) {
     console.log(`Clicou no botão ${i + 1}`);
   });
 }
+
