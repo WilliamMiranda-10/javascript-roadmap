@@ -18,3 +18,15 @@ id.addEventListener("click", () => {
   });
   id.innerText = "Alterado";
 });
+
+const btnId = document.getElementById("btnLampada");
+const lampada = document.getElementById("lampada");
+
+btnId.addEventListener("click", () => {
+  lampada.classList.toggle("ligado");
+  if (lampada.classList.contains("ligado")) {
+    btnId.innerText = "Desligar";
+  } else {
+    btnId.innerText = "Ligar";
+  }
+});

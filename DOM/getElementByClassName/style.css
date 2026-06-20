@@ -42,3 +42,27 @@
 #btn:hover {
   background-color: #148f51;
 }
+
+#lampada {
+  border: 2px solid #000000;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+#btnLampada {
+  background-color: darkgreen;
+  margin: 10px;
+  border: 2px solid #148f51;
+  border-radius: 5px;
+  width: 200px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.ligado {
+  background-color: #ffc400;
+}
