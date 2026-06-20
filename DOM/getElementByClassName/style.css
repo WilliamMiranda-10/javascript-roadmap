@@ -66,3 +66,28 @@
 .ligado {
   background-color: #ffc400;
 }
+
+#menssagem {
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  border: 5px solid #444;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.escondido {
+  display: none;
+}
+
+.mostrar {
+  display: block;
+}
+
+.destacado {
+  color: #000000;
+  background-color: #838383;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+}

@@ -6,18 +6,26 @@ console.log(cursos);
 console.log(cursosC1);
 console.log(cursosC2);
 
-// cursos.map((el)=>{
-//     el.classList.add('destaque')
-// })
+cursos.map((el) => {
+  el.classList.add("destaque");
+});
 
+// Exercício : 01
 const id = document.getElementById("btn");
 
 id.addEventListener("click", () => {
   cursos.map((el) => {
-    el.classList.add("destaque");
+    el.classList.toggle("destaque");
+
+    if (el.classList.contains("destaque")) {
+      id.innerText = "Desalterar";
+    } else {
+      id.innerText = "Alterar";
+    }
   });
-  id.innerText = "Alterado";
 });
+
+// // Exercício 02
 
 const btnId = document.getElementById("btnLampada");
 const lampada = document.getElementById("lampada");
@@ -29,4 +37,26 @@ btnId.addEventListener("click", () => {
   } else {
     btnId.innerText = "Ligar";
   }
+});
+
+// Exercício 03:
+
+const idButton = document.getElementById("btnMostrar");
+const message = document.getElementById("message");
+
+idButton.addEventListener("click", () => {
+  if (message.classList.contains("escondido")) {
+    message.classList.remove("escondido"), message.classList.add("mostrar");
+  } else {
+    message.classList.remove("mostrar");
+    message.classList.add("escondido");
+  }
+});
+
+// Exercício 4
+
+const li = [...document.getElementsByTagName("li")];
+
+li.map((el) => {
+  el.className = "destacado";
 });
