@@ -17,4 +17,9 @@ btnAdd.addEventListener("click", () => {
   input.focus();
 });
 
+input.addEventListener('keydown', (event)=>{
+  if(event.key === "Enter"){
+    btnAdd.click()
+  }
+})
 

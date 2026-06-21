@@ -10,9 +10,11 @@ search.addEventListener("input", () => {
     const nameProduct = product.textContent.toLowerCase();
 
     if (nameProduct.includes(text)) {
-      product.style.display = "block";
+      product.style.display = "";
     } else {
       product.style.display = "none";
     }
   });
 });
+
+
