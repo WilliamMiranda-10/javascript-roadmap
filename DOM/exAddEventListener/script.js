@@ -3,33 +3,30 @@ const caixa2 = document.querySelector("#caixa2");
 const btn = document.querySelector("#btn_copiar");
 const todosCursos = [...document.querySelectorAll(".curso")];
 
-todosCursos.map((el) => {
-  el.addEventListener("click", (evt) => {
+todosCursos.forEach((curso) => {
+  curso.addEventListener("click", (evt) => {
     const el = evt.target;
+
     el.classList.toggle("selecionado");
+    if (el.parentElement === caixa1) {
+      btn.textContent = "Mover";
+    } else if (el.parentElement === caixa2) {
+      btn.textContent = "Remover";
+    }
   });
 });
-
-
-const cursosAdcionados = [...document.querySelectorAll(".adicionados")];
-console.log(cursosAdcionados);
-
-cursosAdcionados.map((el) => {
-  el.addEventListener("click", (evt) => {
-    const el = evt.target;
-    el.classList.add("selecionado");
-    caixa1.appendChild(el);
-  });
-});
-
-
 
 btn.addEventListener("click", () => {
-  const cursosSelecionados = [...document.querySelectorAll(".selecionado")];
+  const cursoSelecionados = document.querySelectorAll(".selecionado");
 
-  cursosSelecionados.map((el) => {
-    el.classList.remove("selecionado");
-    el.classList.add("adicionados");
-    caixa2.appendChild(el);
+  cursoSelecionados.forEach((curso) => {
+    if (btn.textContent === "Mover") {
+      caixa2.appendChild(curso);
+    } else if (btn.textContent === "Remover") {
+      caixa1.appendChild(curso);
+    }
+
+    curso.classList.remove("selecionado");
   });
+  btn.textContent = "Mover";
 });
