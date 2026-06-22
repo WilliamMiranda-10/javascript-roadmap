@@ -16,10 +16,10 @@ if (caixa1.children.length > 0) {
   console.log("Não possui filhos");
 }
 
-console.log(
+console.log(// Não possui filhos
   btn_c[0].children.length > 0 ? "Possui filhos" : "Não possui filhos"
 );
-// Não possui filhos
+
 
 console.log((caixa1.firstElementChild.innerHTML = "Teste"));
 
