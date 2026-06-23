@@ -22,7 +22,7 @@ const loginUser = (email, password) => {
     });
   };
   
-  const getVideosDatails = (video) => {
+  const getVideosDetails = (video) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({ video: "Curso de javascript" });
@@ -32,8 +32,8 @@ const loginUser = (email, password) => {
   
   loginUser("willianteste@gmail.com", "123456").then((user) =>
     getUserVideos(user.email)
-      .then((videos) => getVideosDatails(videos[2]))
-      .then((videosDatails) => console.log({ videosDatails }))
+      .then((videos) => getVideosDetails(videos[2]))
+      .then((videosDetails) => console.log({ videosDetails }))
       .catch((error) => console.log(error))
   );
   
