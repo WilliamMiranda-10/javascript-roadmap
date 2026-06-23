@@ -25,16 +25,11 @@ const getPlaylistSongs = (playlist) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (playlist === "Modão Sertaneijo") {
-        resolve([
-          "Evidências",
-          "Boate Azul",
-          "A Carta",
-          "Ainda Ontem Chorei de Saudade",
-        ]);
+        resolve(["Evidências", "Boate Azul", "A Carta"]);
       } else if (playlist === "Eletrônicas") {
         resolve(["Wake Me Up", "Love Tonight", "Hear Me Now"]);
       } else if (playlist === "HipHop") {
-        resolve(["Lose Yourself", "Insônia", "Vida Loka", "Amor e Fé"]);
+        resolve(["Lose Yourself", "Insônia", "Vida Loka"]);
       }
     }, 2000);
   });
@@ -42,18 +37,31 @@ const getPlaylistSongs = (playlist) => {
 
 const result = async () => {
   try {
-    const user = await loginUser("willianteste@gmail.com", "123456");
+    const user = await loginUser("willianteste@gmailcom", "123456"); // login do usuário
     const playlistData = await getUserPlaylist(user.email);
+    // retorna a objeto com usuario e playlist
+    // {
+    //   usuario: 'willianteste@gmailcom',
+    //   playlist: [ 'Modão Sertaneijo', 'HipHop', 'Eletrônicas' ]
+    // }
 
-    console.log("Usuário logado:", user.email);
+    const playlistMusic = playlistData.playlist; // retorna somente a playlist [ 'Modão Sertaneijo', 'HipHop', 'Eletrônicas' ]
 
-    for (let playlist of playlistData.playlist) {
-      const music = await getPlaylistSongs(playlist);
-      console.log("Playlist:", playlist);
-      console.log("Musicas:", music.join(","));
-    }
+    const listPromise = playlistMusic.map((playlist) =>
+      getPlaylistSongs(playlist)
+    );
+
+    const musicsPlaylist = await Promise.all(listPromise);
+
+    const res = musicsPlaylist.map((musicas, index) => ({
+      usuario: user.email,
+      playlist: playlistMusic[index],
+      musicas,
+    }));
+
+    console.log(res);
   } catch (error) {
-    console.log({ error });
+    console.error("Erro no processo:", error.message);
   }
 };
 
