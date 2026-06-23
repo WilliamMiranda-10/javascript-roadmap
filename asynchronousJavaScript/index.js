@@ -44,15 +44,14 @@ const result = async () => {
   try {
     const user = await loginUser("willianteste@gmail.com", "123456");
     const playlistData = await getUserPlaylist(user.email);
-    const music = await getPlaylistSongs(playlistData.playlist[1]);
 
     console.log("Usuário logado:", user.email);
 
-    console.log('Playlist:',playlistData);
-
-    console.log('Músicas:',music);
-
-
+    for (let playlist of playlistData.playlist) {
+      const music = await getPlaylistSongs(playlist);
+      console.log("Playlist:", playlist);
+      console.log("Musicas:", music.join(","));
+    }
   } catch (error) {
     console.log({ error });
   }
