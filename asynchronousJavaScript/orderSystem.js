@@ -8,44 +8,64 @@ const getUser = (id) => {
 
 const getUserOrders = (userId) => {
   return new Promise((resolve, reject) => {
-    const ordersDB = {
-      1: [
-        { id: 101, produto: "Mouse Gamer", preco: 150 },
-        { id: 102, produto: "Teclado Mecânico", preco: 300 },
-      ],
-      2: [{ id: 201, produto: "Notebook", preco: 3500 }],
-    };
+    setTimeout(() => {
+      const ordersDB = {
+        1: [
+          { id: 101, produto: "Mouse Gamer", preco: 150 },
+          { id: 103, produto: "Teclado Mecânico", preco: 300 },
+        ],
+        2: [{ id: 101, produto: "Notebook", preco: 3500 }],
+      };
 
-    resolve(ordersDB[userId] || []);
+      resolve(ordersDB[userId] || []);
+    }, 2000);
   });
 };
 
 const getOrderStatus = (orderId) => {
   return new Promise((resolve, reject) => {
-    const orderStatus = [
-      { pedidoId: orderId, status: "Entregue" },
-      { pedidoId: orderId, status: "A caminho" },
-      { pedidoId: orderId, status: "Preparando envio" },
-    ];
+    setTimeout(() => {
+      const status = [
+        { pedidoId: 101, status: "Entregue" },
+        { pedidoId: 102, status: "A caminho" },
+        { pedidoId: 103, status: "Preparando envio" },
+      ];
 
-    resolve(orderStatus);
+      const ordersStatus = status.find(
+        (stts) => stts.pedidoId === orderId
+      );
+
+      resolve(ordersStatus);
+    }, 2000);
   });
 };
 
+
+
 const result = async () => {
   try {
-    const user = await getUser(1);
+    const user = await getUser(2);
     const orders = await getUserOrders(user.id);
 
-    const order = orders.map((p) => getOrderStatus(p.id));
-    console.log(order)
+    const statusId = orders.map((productId) => getOrderStatus(productId.id));
 
-    const promiseOrders = await Promise.all(order);
+    const promiseOrders = await Promise.all(statusId);
+    
 
-    console.log(promiseOrders);
+    const resOrders = orders.map((pedido) => {
+      const statusPedido = promiseOrders.find(
+        (status) => status.pedidoId === pedido.id
+      );
 
+      return {
+        usuario: user.nome,
+        pedido: pedido.produto,
+        preco: pedido.preco,
+        status: statusPedido.status,
+      };
+    });
 
-
+    console.log(resOrders);
   } catch (error) {
     console.error("Erro no processo", error);
   }
