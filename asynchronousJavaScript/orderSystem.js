@@ -1,7 +1,17 @@
 const getUser = (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve({ id: id, nome: "William" });
+      const users = {
+        1: { id: 1, nome: "William" },
+        2: { id: 2, nome: "José" },
+        3: { id: 3, nome: "Bruna" },
+      };
+      if (!users[id]) {
+        reject(new Error("Usuário inexistente"));
+        return;
+      }
+
+      resolve(users[id]);
     }, 2000);
   });
 };
@@ -14,10 +24,19 @@ const getUserOrders = (userId) => {
           { id: 101, produto: "Mouse Gamer", preco: 150 },
           { id: 103, produto: "Teclado Mecânico", preco: 300 },
         ],
-        2: [{ id: 101, produto: "Notebook", preco: 3500 }],
+        2: [{ id: 999, produto: "Notebook", preco: 3500 }],
+        3: [
+          { id: 103, produto: "Iphone 17", preco: 7912 },
+          { id: 102, produto: "Sansung S24", preco: 2960 },
+        ],
       };
 
-      resolve(ordersDB[userId] || []);
+      if (!ordersDB[userId]) {
+        reject(new Error("Usuário não encontrado!"));
+        return;
+      }
+
+      resolve(ordersDB[userId]);
     }, 2000);
   });
 };
@@ -31,26 +50,28 @@ const getOrderStatus = (orderId) => {
         { pedidoId: 103, status: "Preparando envio" },
       ];
 
-      const ordersStatus = status.find(
-        (stts) => stts.pedidoId === orderId
-      );
+      const ordersStatus = status.find((stts) => stts.pedidoId === orderId);
+
+      if (!ordersStatus) {
+        reject(new Error("Status do pedido não encontrado!"));
+        return;
+      }
 
       resolve(ordersStatus);
     }, 2000);
   });
 };
 
-
-
 const result = async () => {
   try {
     const user = await getUser(2);
     const orders = await getUserOrders(user.id);
 
-    const statusId = orders.map((productId) => getOrderStatus(productId.id));
+    const statusPromises = orders.map((productId) =>
+      getOrderStatus(productId.id)
+    );
 
-    const promiseOrders = await Promise.all(statusId);
-    
+    const promiseOrders = await Promise.all(statusPromises);
 
     const resOrders = orders.map((pedido) => {
       const statusPedido = promiseOrders.find(
