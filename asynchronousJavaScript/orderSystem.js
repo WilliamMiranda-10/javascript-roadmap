@@ -64,11 +64,11 @@ const getOrderStatus = (orderId) => {
 
 const result = async () => {
   try {
-    const user = await getUser(2);
-    const orders = await getUserOrders(user.id);
+    const user = await getUser(2); // retorna o usuário com id 2
+    const orders = await getUserOrders(user.id); // pedidos do usuário 2
 
     const statusPromises = orders.map((productId) =>
-      getOrderStatus(productId.id)
+      getOrderStatus(productId.id)   // aqui passamos o id do pedido do produto para retorna o status de cada produto 
     );
 
     const promiseOrders = await Promise.all(statusPromises);
