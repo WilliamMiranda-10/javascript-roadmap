@@ -19,7 +19,6 @@ const getUser = (id) => {
       const isLogged = usersDB.find((user) => {
         return user.id === id;
       });
-      // console.log("QUAL USUARIO ESTA LOGADO", isLogged);
 
       if (!isLogged) {
         reject(new Error("Usuário não encontrado!"));
@@ -27,7 +26,7 @@ const getUser = (id) => {
       }
 
       resolve(isLogged);
-    }, 2000);
+    }, 500);
   });
 };
 
@@ -35,9 +34,11 @@ const getUser = (id) => {
 const getUserPost = (userId) => {
   return new Promise((resolve, reject) => {
     const post = {
-      1: { id: 1, post: "Aprendedo javascript" },
-      1: { id: 2, post: "Criando um projeto de controle financeiro" },
-      3: { id: 1, post: "Praticando array/objects" },
+      1: [
+        { id: 1, post: "Aprendedo javascript" },
+        { id: 2, post: "Criando um projeto de controle financeiro" },
+      ],
+      2: { id: 1, post: "Praticando array/objects" },
     };
 
     setTimeout(() => {
@@ -47,8 +48,7 @@ const getUserPost = (userId) => {
       }
 
       resolve(post[userId]);
-      // console.log("getuserpost", post[userId]);
-    }, 2000);
+    }, 500);
   });
 };
 
@@ -63,7 +63,7 @@ const getPostComments = (postId) => {
         { idComments: 4, comments: "Parabéns continue assim!" },
       ],
       2: [
-        { idComments: 1, comments: "Eita que masssa" },
+        { idComments: 1, comments: "Eita que massa" },
         { idComments: 2, comments: "Faz um projeto para mim" },
         { idComments: 3, comments: "Da hora, show" },
       ],
@@ -71,7 +71,7 @@ const getPostComments = (postId) => {
         { idComments: 1, comments: "Precisar de uma ajuda mano so falar" },
         {
           idComments: 2,
-          comments: "Foca nesses tópicos por que isso e fundamento no backend",
+          comments: "Foca nesses tópicos por que isso e fundamental no backend",
         },
       ],
     };
@@ -82,36 +82,36 @@ const getPostComments = (postId) => {
       }
 
       resolve(commentsUsers[postId]);
-    }, 2000);
+    }, 500);
   });
 };
 
-
-
 const result = async () => {
-  const user = await getUser(1);
+  try {
+    const user = await getUser(1);
+    const posts = await getUserPost(user.id);
 
-  const posts = await getUserPost(user.id);
+    const commentsPromise = posts.map((post) => {
+      return getPostComments(post.id);
+    });
 
-  const commentsPromise = await getPostComments(posts.id);
+    const comments = await Promise.all(commentsPromise);
 
-  const comments = await Promise.all(commentsPromise);
+    const resul = comments.map((commentArray, index) => {  
+      const commentsPost = commentArray.map(comment => comment.comments)
 
-  const resul = comments.map((comm) => {
-    return comm.comments;
-  });
+      return {
+        nome: user.nome,
+        post: posts[index].post,
+        comentarios: commentsPost,
+        qtdeComentarios: commentsPost.length,
+      };
+    });
 
-  // console.log(resul);
-
-  const res = {
-    nome: user.nome,
-    post: posts.post,
-    qtdeComentarios: comments.length,
-    comentarios: resul,
-  };
-  console.log(res);
+    console.log("Resultado final:", resul);
+  } catch (error) {
+    console.error("Erro ao executar o processo:", error.message);
+  }
 };
 
 result();
-
-
