@@ -2,7 +2,7 @@
 const getCompany = (id) => {
   return new Promise((resolve, reject) => {
     const companyData = {
-      id: 1,
+      id: 2,
       nome: "Império tech",
     };
 
@@ -19,7 +19,7 @@ const getCompany = (id) => {
   });
 };
 
-// buscar funcionarios/;ç
+// buscar funcionarios/;
 const getEmployees = (companyId) => {
   return new Promise((resolve, reject) => {
     const employeesData = [
@@ -47,7 +47,7 @@ const getEmployees = (companyId) => {
       const companyEmploeeId = employeesData.filter((employee) => {
         return employee.companyId === companyId;
       });
-      console.log(companyEmploeeId);
+      console.log("teste CompanyEmploee", companyEmploeeId);
 
       if (!companyEmploeeId) {
         reject(new Error("Funcionário não encontrado dessa companhia."));
@@ -62,7 +62,7 @@ const getEmployees = (companyId) => {
 const getEmployeeProjects = (employeeName) => {
   new Promise((resolve, reject) => {
     const employeeProjectsData = {
-      william: [
+      William: [
         { id: 101, nome: "API financeira" },
         { id: 102, nome: "Sistema dde Login" },
       ],
@@ -78,7 +78,10 @@ const getEmployeeProjects = (employeeName) => {
         reject(new Error("Não à projetos desse funcionário."));
         return;
       }
-      console.log(employeeProjectsData[employeeName]);
+      console.log(
+        "employeeProjectsData[employeeName",
+        employeeProjectsData[employeeName]
+      );
 
       resolve(employeeProjectsData[employeeName]);
     });
@@ -117,14 +120,27 @@ const getProjectTasks = (projectId) => {
   });
 };
 
-getCompany(1);
-getEmployees(1);
-
 const result = async () => {
-  const company = await getCompany(1);
-  const employees = await getEmployees(company.id);
-  const projects = await getEmployeeProjects(employees.nome);
+  const company = await getCompany(2);
+  console.log("Company:", company);
+  const employees = await getEmployees(company);
+  const employeeName = employees.map((name)=> getEmployeeProjects(name.nome))
 
-  const tasks = await getProjectTasks(projects)
+  console.log("Employees:", employees);
+  console.log("Employees Name:", employeeName);
 
+  
+
+  
 };
+
+result();
+
+
+
+
+
+
+
+
+
