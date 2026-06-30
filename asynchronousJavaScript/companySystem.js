@@ -2,7 +2,7 @@
 const getCompany = (id) => {
   return new Promise((resolve, reject) => {
     const companyData = {
-      id: 1,
+      id: 5,
       nome: "Império tech",
     };
 
@@ -45,9 +45,10 @@ const getEmployees = (companyId) => {
       const companyEmploeeId = employeesData.filter((employee) => {
         return employee.companyId === companyId;
       });
+   
 
-      if (!companyEmploeeId) {
-        reject(new Error("Funcionário não encontrado dessa companhia."));
+      if (companyEmploeeId.length === 0) {
+        reject(new Error("Funcionário não encontrado nesta companhia."));
         return;
       }
 
@@ -55,7 +56,7 @@ const getEmployees = (companyId) => {
     }, 1000);
   });
 };
-
+// busca projetos de cada funcionário
 const getEmployeeProjects = (employeeName) => {
   return new Promise((resolve, reject) => {
     const employeeProjectsData = {
@@ -81,6 +82,7 @@ const getEmployeeProjects = (employeeName) => {
   });
 };
 
+// busca as tarefas de cada projeto
 const getProjectTasks = (projectId) => {
   return new Promise((resolve, reject) => {
     const tasksProjectData = {
@@ -114,16 +116,18 @@ const getProjectTasks = (projectId) => {
 };
 
 const result = async () => {
-  const company = await getCompany(1);
+  const company = await getCompany(5); // buscar a empresa
 
-  const employees = await getEmployees(company);
+  const employees = await getEmployees(company); // buscar os funcionários da empresa
 
+  //pegar o projeto de cada funcionário
   const projectPromises = employees.map((name) =>
     getEmployeeProjects(name.nome)
   );
 
   const employeeProjects = await Promise.all(projectPromises);
 
+  // pega as tarefas de todos os projetos
   const taskPromiseByEmployee = employeeProjects.map((projects) => {
     const taskPromises = projects.map((project) => getProjectTasks(project.id));
     const projectTasks = Promise.all(taskPromises);
@@ -131,7 +135,7 @@ const result = async () => {
   });
 
   const tasksByEmployee = await Promise.all(taskPromiseByEmployee);
-
+  //montar relatório final
   const companyReport = employees.map((employee, employeeIndex) => {
     const projects = employeeProjects[employeeIndex].map(
       (project, projectIndex) => {
@@ -158,3 +162,6 @@ const result = async () => {
 };
 
 result();
+
+// Promise.all garante que todas as tarefas dos projetos sejam carregadas
+// antes de continuar a execução
