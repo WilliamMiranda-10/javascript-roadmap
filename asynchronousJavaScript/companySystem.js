@@ -12,8 +12,6 @@ const getCompany = (id) => {
         return;
       }
 
-      console.log("compa", companyData.id);
-
       resolve(companyData.id);
     }, 1000);
   });
@@ -47,7 +45,6 @@ const getEmployees = (companyId) => {
       const companyEmploeeId = employeesData.filter((employee) => {
         return employee.companyId === companyId;
       });
-      console.log("teste CompanyEmploee", companyEmploeeId);
 
       if (!companyEmploeeId) {
         reject(new Error("Funcionário não encontrado dessa companhia."));
@@ -64,7 +61,7 @@ const getEmployeeProjects = (employeeName) => {
     const employeeProjectsData = {
       William: [
         { id: 101, nome: "API financeira" },
-        { id: 102, nome: "Sistema dde Login" },
+        { id: 102, nome: "Sistema de Login" },
       ],
       Bruna: [{ id: 201, nome: "Dashboard" }],
       José: [
@@ -78,10 +75,6 @@ const getEmployeeProjects = (employeeName) => {
         reject(new Error("Não à projetos desse funcionário."));
         return;
       }
-      console.log(
-        "employeeProjectsData[employeeName",
-        employeeProjectsData[employeeName]
-      );
 
       resolve(employeeProjectsData[employeeName]);
     }, 1000);
@@ -122,35 +115,46 @@ const getProjectTasks = (projectId) => {
 
 const result = async () => {
   const company = await getCompany(1);
-  console.log("Company:", company);
+
   const employees = await getEmployees(company);
-  console.log("employee:", employees);
-  const promiseProjects = employees.map((name) =>
+
+  const projectPromises = employees.map((name) =>
     getEmployeeProjects(name.nome)
   );
-  console.log("promiseProject:", promiseProjects); // uma promise que contem um array de promise
-  const listProjects = await Promise.all(promiseProjects);
-  console.log("listprojects", listProjects); // É um array de arrays de objetos que contem projetos
 
-  const promiseTasks = listProjects.map(async (arrayProjects) => {
-    const grupoPromises = arrayProjects.map((project, index) => {
-      return getProjectTasks(project.id);
-    });
-    const resu = await Promise.all(grupoPromises);
-    console.log('resu',resu)
+  const employeeProjects = await Promise.all(projectPromises);
+
+  const taskPromiseByEmployee = employeeProjects.map((projects) => {
+    const taskPromises = projects.map((project) => getProjectTasks(project.id));
+    const projectTasks = Promise.all(taskPromises);
+    return projectTasks;
+  });
+
+  const tasksByEmployee = await Promise.all(taskPromiseByEmployee);
+
+  const companyReport = employees.map((employee, employeeIndex) => {
+    const projects = employeeProjects[employeeIndex].map(
+      (project, projectIndex) => {
+        const projectTasks = tasksByEmployee[employeeIndex][projectIndex];
+
+        const taskTitles = projectTasks.map((task) => task.titulo);
+
+        return {
+          nome: project.nome,
+          quantidadeTarefas: projectTasks.length,
+          tarefas: taskTitles,
+        };
+      }
+    );
+
     return {
-      funcionario: employees[index].nome,
-      cargo: employees[index].cargo,
-      projetos: arrayProjects[index]
+      funcionario: employee.nome,
+      cargo: employee.cargo,
+      projetos: projects,
     };
   });
 
-  const resultado = await Promise.all(promiseTasks);
-
-  console.log('resultado :',resultado)
-  // // console.log('resultado :',resultado[0][0])
-  // console.log('resultado :',resultado[0][0][0])
-  // console.log(JSON.stringify(resultado, null, 2));
+  console.log(JSON.stringify(companyReport, null, 2));
 };
 
 result();
