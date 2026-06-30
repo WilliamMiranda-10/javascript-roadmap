@@ -38,14 +38,9 @@ const getPlaylistSongs = (playlist) => {
 const result = async () => {
   try {
     const user = await loginUser("willianteste@gmailcom", "123456"); // login do usuário
-    const playlistData = await getUserPlaylist(user.email);
-    // retorna a objeto com usuario e playlist
-    // {
-    //   usuario: 'willianteste@gmailcom',
-    //   playlist: [ 'Modão Sertaneijo', 'HipHop', 'Eletrônicas' ]
-    // }
-
-    const playlistMusic = playlistData.playlist; // retorna somente a playlist [ 'Modão Sertaneijo', 'HipHop', 'Eletrônicas' ]
+    const playlistData = await getUserPlaylist(user.email); //busca o usuario
+   
+    const playlistMusic = playlistData.playlist; 
 
     const listPromise = playlistMusic.map((playlist) =>
       getPlaylistSongs(playlist)
