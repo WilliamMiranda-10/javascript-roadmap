@@ -7,8 +7,7 @@ const url = "https://jsonplaceholder.typicode.com/users";
 
 const usersData = async (url) => {
   const response = await fetch(url);
-  const data = await response.json();
-  return data;
+  return response.json();
 };
 const teste = await usersData(url);
 console.log(teste);

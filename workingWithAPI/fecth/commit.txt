@@ -1,0 +1,6 @@
+study: practice promises and async/await
+study: implement company report with Promise.all
+study: practice Fetch API fundamentals
+study: consume posts endpoint with Fetch API
+study: practice POST requests with Fetch API
+study: practice error handling with Fetch API
