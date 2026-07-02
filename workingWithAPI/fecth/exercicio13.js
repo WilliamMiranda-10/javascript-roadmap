@@ -23,6 +23,8 @@ const getUserPosts = async () => {
   return await response.json();
 };
 
+export default { usersData, getUserPosts, commentsData };
+
 const getCommentsPostUsers = async () => {
   try {
     const comments = await commentsData();
@@ -54,4 +56,3 @@ const getCommentsPostUsers = async () => {
   }
 };
 
-getCommentsPostUsers();
