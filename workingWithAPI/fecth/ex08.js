@@ -70,3 +70,31 @@ const getPostsUserCount = async (url, urlUsers) => {
 };
 
 getPostsUserCount(url, urlUsers);
+
+// Ex: 11 -> montar um array com usuario e posts /  Ex: 12 -> quantidade posts
+
+const postUser = async (urlUsers, urlPosts) => {
+  try {
+    const users = await usersData(urlUsers);
+    const posts = await getUserPosts(urlPosts);
+
+    const usersPosts = users.map((user) => {
+      const userPost = posts.filter((post) => {
+        return post.userId === user.id;
+      });
+
+      const titles = userPost.map((post) => post.title);
+      return {
+        usuario: user.name,
+        posts: titles,
+        quantidadePosts: titles.length,
+      };
+    });
+
+    console.log(usersPosts);
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+postUser(urlUsers, urlPosts);
