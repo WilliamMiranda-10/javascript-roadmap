@@ -16,12 +16,12 @@ const getCountPostsCommentsUsers = async () => {
       return comments.length;
     });
 
-    const qtdeComments = postsComments.reduce((acc, item) => acc + item, 0);
+    const amountComments = postsComments.reduce((acc, item) => acc + item, 0);
 
     return {
       nome: user.name,
       qtdePosts: posts.length,
-      qtdeComentarios: qtdeComments,
+      qtdeComentarios: amountComments,
     };
   });
 
