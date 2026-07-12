@@ -56,14 +56,11 @@ console.log(product);
 
 console.log(first, rest); //10 [ 20, 30, 40, 50 ]
 
-
 const fruits = ["Maçã", "Banana"];
 
 const moreFruits = [...fruits, "Laranja"];
 
-console.log(moreFruits)
-
-
+console.log(moreFruits);
 
 const user = {
   name: "William",
@@ -78,3 +75,43 @@ const updatedUser = {
 
 console.log(updatedUser);
 
+const productEletronic = {
+  id: 10,
+  name: "Notebook",
+  price: 3500,
+  costPrice: 2500,
+  stock: 8,
+};
+
+const { costPrice, ...productDetails } = productEletronic;
+
+console.log(productDetails);
+
+// Desestruturação voçê tem array ou objeto e quer tirar informações dele
+
+// O spread serve para copiar ou espalhar os valores de um array ou objeto.
+
+function sum(...numbers) {
+  let total = 0;
+  for (const number of numbers) {
+    total += number;
+  }
+  return total;
+}
+
+console.log(sum(10, 20, 30));
+
+function max(...numbers) {
+  let max = numbers[0];
+  for (const number of numbers) {
+    if (number > max) {
+      max = number;
+    }
+  }
+
+  return max;
+}
+
+const maxNumber = max(10, 80, 20, 15);
+
+console.log(maxNumber);
