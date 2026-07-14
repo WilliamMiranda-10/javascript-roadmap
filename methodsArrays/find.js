@@ -5,6 +5,8 @@ const products = [
   { id: 4, name: "Teclado", price: 250, stock: 0 },
 ];
 
+
+
 const productId = products.find((product) => product.id === 10);
 console.log(productId);
 
@@ -24,6 +26,6 @@ if (!user) {
   console.log("Usuário não encontrado!");
 } else {
   console.log(user);
-}
+// }
 
 
