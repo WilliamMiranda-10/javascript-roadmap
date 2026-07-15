@@ -36,3 +36,64 @@ const qtdeOrders = orders.reduce((acc, order) => {
 
 console.log(qtdeOrders);
 
+const orders1 = [
+  { id: 1, total: 250 },
+  { id: 2, total: 100 },
+  { id: 3, total: 350 },
+  { id: 4, total: 80 },
+];
+
+const finalValue = orders1.reduce((acc, { total }) => acc + total, 0);
+
+console.log(finalValue); //780
+
+const employees = [
+  { name: "William", salary: 3000 },
+  { name: "Maria", salary: 4500 },
+  { name: "João", salary: 2500 },
+];
+
+const totalSalary = employees.reduce(
+  (acc, employee) => acc + employee.salary,
+  0
+);
+
+console.log(totalSalary);
+
+const users = [
+  { name: "William", age: 30 },
+  { name: "Maria", age: 28 },
+  { name: "João", age: 42 },
+];
+
+const maiorIdade = users.reduce((acc, user) => {
+  if (user.age > acc) {
+    acc = user.age;
+    return user.age;
+  }
+  return acc;
+}, 0);
+
+console.log(maiorIdade);
+
+const age = users.reduce((acc, user) => (user.age > acc ? user.age : acc), 0);
+console.log(age);
+
+const usersCity = [
+  { name: "William", city: "Jaru" },
+  { name: "Maria", city: "Porto Velho" },
+  { name: "João", city: "Jaru" },
+  { name: "Ana", city: "Ji-Paraná" },
+];
+
+const groupCity = usersCity.reduce((acc, user) => {
+  acc[user.city] = [];
+  if (!acc[user.city]) {
+    acc[user.city].push(user);
+    return acc
+  }
+
+  return acc;
+}, {});
+
+console.log(groupCity);
