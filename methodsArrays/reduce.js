@@ -87,10 +87,11 @@ const usersCity = [
 ];
 
 const groupCity = usersCity.reduce((acc, user) => {
-  acc[user.city] = [];
   if (!acc[user.city]) {
+    acc[user.city] = [];
     acc[user.city].push(user);
-    return acc
+  } else {
+    acc[user.city].push(user);
   }
 
   return acc;
