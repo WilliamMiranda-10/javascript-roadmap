@@ -98,3 +98,22 @@ const groupCity = usersCity.reduce((acc, user) => {
 }, {});
 
 console.log(groupCity);
+
+const products = [
+  { name: "Notebook", category: "Eletrônicos", price: 3500 },
+  { name: "Mouse", category: "Eletrônicos", price: 120 },
+  { name: "Mesa", category: "Móveis", price: 800 },
+  { name: "Cadeira", category: "Móveis", price: 450 },
+  { name: "Monitor", category: "Eletrônicos", price: 900 },
+];
+
+const valueCategory = products.reduce((acc, product) => {
+  if (!acc[product.category]) {
+    acc[product.category] =  product.price;
+  } else {
+    acc[product.category] = product.price;
+  }
+  return acc;
+}, {});
+
+console.log(valueCategory);
