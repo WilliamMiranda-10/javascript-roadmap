@@ -109,11 +109,52 @@ const products = [
 
 const valueCategory = products.reduce((acc, product) => {
   if (!acc[product.category]) {
-    acc[product.category] =  product.price;
+    // se a categoria não existir
+    acc[product.category] = product.price; // crio a categoria com seu valor
   } else {
-    acc[product.category] = product.price;
+    acc[product.category] += product.price;
   }
   return acc;
 }, {});
 
 console.log(valueCategory);
+
+
+
+// const ordersPaid = ordersCustomer
+//   .filter((order) => order.status === "paid")
+//   .reduce((acc, order) => acc + order.total, 0);
+
+// console.log(ordersPaid);
+
+// const ordersPaidUsers = ordersCustomer
+//   .filter((order) => order.status === "paid")
+//   .reduce((acc, order) => {
+//     if (!acc[order.customer]) {
+//       acc[order.customer] = order.total;
+//     } else {
+//       acc[order.customer] += order.total;
+//     }
+//     return acc;
+//   }, {});
+
+// console.log(ordersPaidUsers);
+const ordersCustomer = [
+  { id: 1, customer: "William", status: "paid", total: 300 },
+  { id: 2, customer: "Maria", status: "pending", total: 150 },
+  { id: 3, customer: "William", status: "paid", total: 200 },
+  { id: 4, customer: "João", status: "cancelled", total: 100 },
+  { id: 5, customer: "Maria", status: "paid", total: 250 },
+];
+
+const report = ordersCustomer
+  .filter((order) => order.status === "paid")
+  .reduce((acc, order) => {
+    if (!acc[order.customer]) {
+      acc[order.customer] = order.customer.
+      acc[order.customer].totalSpent += order.total;
+      acc[order.customer].orders += order
+    } else {
+    }
+    return acc
+  }, {});
