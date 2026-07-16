@@ -119,8 +119,6 @@ const valueCategory = products.reduce((acc, product) => {
 
 console.log(valueCategory);
 
-
-
 // const ordersPaid = ordersCustomer
 //   .filter((order) => order.status === "paid")
 //   .reduce((acc, order) => acc + order.total, 0);
@@ -139,6 +137,7 @@ console.log(valueCategory);
 //   }, {});
 
 // console.log(ordersPaidUsers);
+
 const ordersCustomer = [
   { id: 1, customer: "William", status: "paid", total: 300 },
   { id: 2, customer: "Maria", status: "pending", total: 150 },
@@ -151,10 +150,21 @@ const report = ordersCustomer
   .filter((order) => order.status === "paid")
   .reduce((acc, order) => {
     if (!acc[order.customer]) {
-      acc[order.customer] = order.customer.
-      acc[order.customer].totalSpent += order.total;
-      acc[order.customer].orders += order
-    } else {
+      acc[order.customer] = { totalSpent: 0, orders: 0 };
+      // {william : {totalSpent: order.total, orders: 0 }}
     }
-    return acc
+    acc[order.customer].totalSpent += order.total;
+    acc[order.customer].orders += 1;
+
+    return acc;
   }, {});
+
+console.log(report);
+
+
+const ordersUsers = Object.entries(report)
+
+const [customer, data ] = ordersUsers 
+
+console.log(customer)
+console.log(data)
