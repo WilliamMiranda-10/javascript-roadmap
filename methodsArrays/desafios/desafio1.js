@@ -47,22 +47,7 @@ const result = users.map((user) => {
 console.log(result);
 
 // [
-//     {
-//       name: "William",
-//       totalTasks: 3,
-//       completed: 2,
-//       pending: 1,
-//     },
-//     {
-//       name: "Maria",
-//       totalTasks: 2,
-//       completed: 0,
-//       pending: 2,
-//     },
-//     {
-//       name: "João",
-//       totalTasks: 0,
-//       completed: 0,
-//       pending: 0,
-//     },
-//   ]
+//   { name: 'William', totalTasks: 3, completed: 2, pending: 1 },
+//   { name: 'Maria', totalTasks: 2, completed: 0, pending: 2 },
+//   { name: 'João', totalTasks: 0, completed: 0, pending: 0 }
+// ]
