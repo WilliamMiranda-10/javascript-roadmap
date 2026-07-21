@@ -161,10 +161,10 @@ const report = ordersCustomer
 
 console.log(report);
 
+const teste = Object.entries(report).map(([customer, data]) => {
+  return { customer, ...data };
+});
 
-const ordersUsers = Object.entries(report)
+console.log(teste);
 
-const [customer, data ] = ordersUsers 
 
-console.log(customer)
-console.log(data)
