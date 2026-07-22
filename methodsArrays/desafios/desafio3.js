@@ -11,11 +11,12 @@ const cart = [
 
 const result = cart.map((item) => {
   const productCart = products.find((product) => product.id === item.id);
+  const {id, name, stock } = productCart // <----desestruturação
   return {
-    id: productCart.id,
-    name: productCart.id,
+    id: id,
+    name: name,
     quantity: item.quantity,
-    available: productCart.stock > 0,
+    available: stock > 0,
   };
 });
 
