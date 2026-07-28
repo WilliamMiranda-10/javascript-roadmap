@@ -39,7 +39,7 @@ const william = User("William", 30);
 
 console.log(william);
 
-// factory functions
+//----->>>> factory functions
 
 function createUser(name, age) {
   return {
@@ -56,7 +56,7 @@ const bruna = createUser("Bruna", 68);
 
 bruna.introduce();
 
-// Constructor function
+// ----->>>> Constructor function
 
 function User(name, age) {
   this.name = name;
@@ -70,7 +70,7 @@ function User(name, age) {
 const carlos = new User("José", 68);
 carlos.introduce();
 
-// Constructor + Prototype (o jeito clássico)
+// ----->>>> Constructor + Prototype (o jeito clássico)
 
 function user1(name, age) {
   (this.name = name), (this.age = age);
@@ -93,4 +93,10 @@ const maria = new user1("Maria", 84);
 
 jose.introduce(); // Olá meu nome é José
 maria.introduce(); // Olá meu nome é Maria
+
+// ----->>>> Classes
+
+// "Classes são uma forma mais organizada de criar objetos. Por baixo dos panos, 
+// elas utilizam prototypes para compartilhar métodos entre todas as instâncias, 
+// evitando criar uma nova cópia do mesmo método para cada objeto."
 
