@@ -30,3 +30,5 @@ class User1 {
 const jose = new User1("José")
 
 User1.showName() // undefined -> pois nao criamos nenhum user.name = "José"
+
+
