@@ -19,23 +19,60 @@ iphone.showInfo();
 
 // Esse método showInfo() deveria ser static? Por quê?
 
-
-
 //------------------------------------------------------------//
 
 class User {
-  static totalUsers = 0;
+  
   constructor(name, email) {
     this.name = name;
     this.email = email;
-    User.totalUsers++;
+    
   }
+
+  static totalUsers(){
+    
+  }
+
 }
 
 const william = new User("William", "willian@gmail.com");
 const maria = new User("Maria", "maria@gmail.com");
 
-console.log(User.totalUsers, 'usuários cadastrado')
+console.log(User.totalUsers)
 
 //Por que totalUsers() seria um método static?
+
+class BankAccount {
+  constructor(owner) {
+    this.owner = owner;
+    this.balance = 0;
+  }
+
+  deposit(value) {
+    this.balance += value;
+  }
+
+  withdraw(value) {
+    if (value > this.balance) {
+      console.log("Saldo insuficiente");
+      return
+    }
+    this.balance -= value
+  }
+
+  static createAccount(owner) {
+    
+  }
+}
+
+
+const williamMiranda = new BankAccount('William')
+
+williamMiranda.deposit(500)
+williamMiranda.withdraw(530)
+
+
+console.log(williamMiranda.balance)
+
+
 
