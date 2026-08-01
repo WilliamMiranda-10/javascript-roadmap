@@ -22,23 +22,23 @@ iphone.showInfo();
 //------------------------------------------------------------//
 
 class User {
-  
+  static totalUsuarios = 0;
+
   constructor(name, email) {
     this.name = name;
     this.email = email;
-    
+    User.totalUsuarios++;
   }
 
-  static totalUsers(){
-    
+  static totalUsers() {
+    return User.totalUsuarios;
   }
-
 }
 
 const william = new User("William", "willian@gmail.com");
 const maria = new User("Maria", "maria@gmail.com");
 
-console.log(User.totalUsers)
+console.log(User.totalUsers(), "usuários cadastrados");
 
 //Por que totalUsers() seria um método static?
 
@@ -55,24 +55,14 @@ class BankAccount {
   withdraw(value) {
     if (value > this.balance) {
       console.log("Saldo insuficiente");
-      return
+      return;
     }
-    this.balance -= value
+    this.balance -= value;
   }
 
   static createAccount(owner) {
-    
+    return new BankAccount(owner);
   }
 }
 
-
-const williamMiranda = new BankAccount('William')
-
-williamMiranda.deposit(500)
-williamMiranda.withdraw(530)
-
-
-console.log(williamMiranda.balance)
-
-
-
+console.log(BankAccount.createAccount("William"));
