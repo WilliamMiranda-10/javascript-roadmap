@@ -56,3 +56,10 @@ try {
 console.log(jose.getName());
 
 console.log(jose.getSalary());
+
+
+//"Eu faria essa alteração apenas dentro da classe Product, porque ela é a responsável 
+// por controlar as regras de negócio relacionadas ao preço.
+// Como toda alteração passa pelo método setPrice(), 
+// basta modificar a validação em um único lugar e todo o sistema passa a obedecer à nova regra."
+
